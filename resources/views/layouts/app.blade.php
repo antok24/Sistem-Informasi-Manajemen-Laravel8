@@ -24,11 +24,9 @@
     <!-- Fontawesome -->
     <link type="text/css" href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
-    <!-- Notyf -->
-    <link type="text/css" href="{{ asset('vendor/notyf/notyf.min.css') }}" rel="stylesheet">
-
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
+    @livewireStyles    
 </head>
 <body>
     @include('layouts.sidebar')
@@ -41,7 +39,7 @@
 
         @include('layouts.footer')
     </main>
-
+    @include('sweetalert::alert')
     <!-- Core -->
     <script src="{{ asset('vendor/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -61,9 +59,6 @@
     <!-- Count up -->
     <script src="{{ asset('vendor/countup.js/dist/countUp.umd.js') }}"></script>
 
-    <!-- Notyf -->
-    <script src="{{ asset('vendor/notyf/notyf.min.js') }}"></script>
-
     <!-- Charts -->
     <script src="{{ asset('vendor/chartist/dist/chartist.min.js') }}"></script>
     <script src="{{ asset('vendor/chartist-plugin-tooltips/dist/chartist-plugin-tooltip.min.js') }}"></script>
@@ -79,5 +74,6 @@
 
     <!-- Volt JS -->
     <script src="{{ asset('assets/js/volt.js') }}"></script>
+    @livewireScripts
 </body>
 </html>

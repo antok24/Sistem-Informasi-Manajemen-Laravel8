@@ -25,7 +25,7 @@ class CreateSuratMasuksTable extends Migration
             $table->char('status',4);
             $table->string('file_surat_masuk');
             $table->string('user_create');
-            $table->string('user_update');
+            $table->string('user_update')->nullable();
             $table->timestamps();
         });
     }
