@@ -74,6 +74,8 @@
 
     <!-- Volt JS -->
     <script src="{{ asset('assets/js/volt.js') }}"></script>
+
     @livewireScripts
+    
 </body>
 </html>

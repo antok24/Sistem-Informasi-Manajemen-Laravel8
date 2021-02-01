@@ -11,6 +11,7 @@ use Illuminate\Support\Facades\Redirect;
 use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
+use File;
 
 class SuratMasukController extends Controller
 {
@@ -24,9 +25,11 @@ class SuratMasukController extends Controller
         return view('suratmasuk.index');
     }
 
-    public function create()
+    public function formadd()
     {
-        return view('suratmasuk.create');
+        $data = SuratMasuk::latest()->limit(5)->get();
+
+        return view('suratmasuk.create',['data' => $data]);
     }
 
     public function store(Request $request)
@@ -37,17 +40,23 @@ class SuratMasukController extends Controller
                 'sifat_surat' => 'required',
                 'perihal' => 'required',
                 'tanggal_surat' => 'required',
-                'file_surat_masuk' => 'required',
+                'file_surat_masuk' => 'required|max:2000',
         ]);
 
         if($validator->fails()){
-            // return redirect('surat-masuk')
-            //     ->withErrors($validator)
-            //     ->withInput();
             return back()->with('toast_error', $validator->messages()->all()[0])->withErrors($validator)->withInput();
         } else{
-            $tanggal_agenda = date('Y/m/d');
 
+            // menyimpan data file yang di upload ke variabel $file
+            $file = $request->file('file_surat_masuk');
+            $tanggalsimpan = date('d-m-Y');
+            // menyimpan file dengan nama
+            $nama_file = $tanggalsimpan."_".$file->getClientOriginalName();
+            // isi dengan nama folder tempat kemana menyimpan file
+            $tujuan_upload = 'file/surat_masuk';
+            $file->move($tujuan_upload,$nama_file);
+
+            $tanggal_agenda = date('Y/m/d');
             $tetap = 'AGD';
             $bulanRomawi = array("", "I","II","III", "IV", "V","VI","VII","VIII","IX","X", "XI","XII");
             $nomor = \App\Models\SuratMasuk::max('nomor_agenda');
@@ -62,8 +71,8 @@ class SuratMasukController extends Controller
             $suratmasuk->sifat_surat = $request->sifat_surat;
             $suratmasuk->perihal = $request->perihal;
             $suratmasuk->tanggal_agenda = $tanggal_agenda;
-            $suratmasuk->tanggal_surat = Carbon::createFromFormat('d/m/Y', $request->tanggal_surat)->format('Y-m-d');
-            $suratmasuk->file_surat_masuk = $request->file_surat_masuk;
+            $suratmasuk->tanggal_surat = $request->tanggal_surat;
+            $suratmasuk->file_surat_masuk = $nama_file;
             $suratmasuk->status = 0;
             $suratmasuk->user_create = Auth::user()->name;
 

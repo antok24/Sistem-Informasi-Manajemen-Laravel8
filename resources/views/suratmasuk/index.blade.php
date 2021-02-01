@@ -14,7 +14,7 @@
 <div class="row">
   <livewire:search-suratmasuk />
   
-  <div class="col-12 col-xl-4">
+  {{-- <div class="col-12 col-xl-4">
     <div class="row">
       <div class="col-12 mb-4">
         <div class="card bg-light border-light text-center p-0">
@@ -27,6 +27,6 @@
       </div>
     </div>
   </div>
-</div>
+</div> --}}
 
 @endsection
