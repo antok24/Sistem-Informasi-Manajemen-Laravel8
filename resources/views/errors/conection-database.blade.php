@@ -25,21 +25,27 @@
     <link type="text/css" href="{{ asset('vendor/@fortawesome/fontawesome-free/css/all.min.css') }}" rel="stylesheet">
 
     <!-- Volt CSS -->
-    <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
-    @livewireStyles    
+    <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">   
 </head>
 <body>
-    @include('layouts.sidebar')
-
-    <main class="content text-info">
-        
-        {{-- @include('layouts.navbar') --}}
-        {{-- {{ $slot }} --}}
-        @yield('content')
-
-        {{-- @include('layouts.footer') --}}
+    
+    <main>
+        <section class="vh-100 d-flex align-items-center justify-content-center">
+            <div class="container">
+                <div class="row align-items-center ">
+                    <div class="col-12 col-lg-5 order-2 order-lg-1 text-center text-lg-left">
+                        <h1 class="mt-5">Sepertinya ada masalah yang <span class="text-primary">Serius</span> disini</h1>
+                        <p class="lead my-4">Database tidak bisa terkoneksi dengan baik. Mohon Tunggu !</p>
+                        <a class="btn btn-primary animate-hover" href="{{ route('home') }}"><i class="fas fa-chevron-left mr-3 pl-2 animate-left-3"></i>Go back home</a>
+                    </div>
+                    <div class="col-12 col-lg-7 order-1 order-lg-2 text-center d-flex align-items-center justify-content-center">
+                        <img class="img-fluid w-75" src="{{ asset('assets/img/illustrations/500.svg') }}" alt="500 Server Error">
+                    </div>
+                </div>
+            </div>
+        </section>
     </main>
-    @include('sweetalert::alert')
+
     <!-- Core -->
     <script src="{{ asset('vendor/popper.js/dist/umd/popper.min.js') }}"></script>
     <script src="{{ asset('vendor/bootstrap/dist/js/bootstrap.min.js') }}"></script>
@@ -74,8 +80,6 @@
 
     <!-- Volt JS -->
     <script src="{{ asset('assets/js/volt.js') }}"></script>
-
-    @livewireScripts
     
 </body>
 </html>

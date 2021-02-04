@@ -15,7 +15,9 @@ class CreateSuratKeluarsTable extends Migration
     {
         Schema::create('t_surat_keluar', function (Blueprint $table) {
             $table->id();
-            $table->string('nomor_surat', 50);
+            $table->char('nomor_surat', 8);
+            $table->string('nomor_ref_surat', 20);
+            $table->char('tahun_surat', 4);
             $table->text('tujuan_kepada');
             $table->text('alamat_surat',20);
             $table->text('perihal');
@@ -23,7 +25,7 @@ class CreateSuratKeluarsTable extends Migration
             $table->date('tanggal_surat');
             $table->string('file_surat_keluar');
             $table->string('user_create');
-            $table->string('user_update');
+            $table->string('user_update')->nullable();
             $table->timestamps();
         });
     }
