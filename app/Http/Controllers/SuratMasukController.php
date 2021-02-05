@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\SuratMasuk;
+use App\Models\Pejabat;
 use Auth;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
@@ -12,6 +13,7 @@ use Illuminate\Support\Facades\Input;
 use Illuminate\Support\Facades\DB;
 use RealRashid\SweetAlert\Facades\Alert;
 use File;
+use PDF;
 
 class SuratMasukController extends Controller
 {
@@ -64,6 +66,8 @@ class SuratMasukController extends Controller
             $nomora = $noUrut+1;
             $nomorurut = sprintf("%04s", $nomora).'/'.$tetap.'/'.$bulanRomawi[date('n')].'/'.date('Y');
 
+            $pejabat = Pejabat::where('kode_jabatan',1)->where('kode_upbjj', Auth::user()->kode_upbjj)->first();
+
             $suratmasuk = new SuratMasuk;
             $suratmasuk->nomor_agenda = $nomorurut;
             $suratmasuk->nomor_surat = $request->nomor_surat;
@@ -74,10 +78,32 @@ class SuratMasukController extends Controller
             $suratmasuk->tanggal_surat = $request->tanggal_surat;
             $suratmasuk->file_surat_masuk = $nama_file;
             $suratmasuk->status = 0;
+            $suratmasuk->nip_ttd = $pejabat->nik;
             $suratmasuk->user_create = Auth::user()->name;
 
             $suratmasuk->save();
             return redirect()->route('suratmasuk.create')->with('success','Data Berhasil Disimpan');
         }
+    }
+
+    public function cetakdisposisi($id)
+    {
+        $bulan = array("", "Januari","Februari","Maret", "April", "Mei","Juni","Juli","Agustus","September","Oktober", "November","Desember");
+        $hariini = date('d').' '.$bulan[date('n')].' '.date('Y');
+        
+        $pejabat = DB::table('t_pejabat')->leftJoin('m_jabatan', 't_pejabat.kode_jabatan', '=' , 'm_jabatan.kode_jabatan')->where('t_pejabat.kode_jabatan',1)->where('t_pejabat.kode_upbjj', Auth::user()->kode_upbjj)->first();
+
+        $result = SuratMasuk::where('id',$id)->get();
+
+        $view  = \View::make('suratmasuk.cetakdisposisi',[
+            'hariini' => $hariini,
+            'result' => $result,
+            'pejabat' => $pejabat,
+        ])->render();
+
+        $pdf   = \App::make('dompdf.wrapper');
+        $pdf->loadHTML($view)->setPaper('letter', 'potrait');
+                
+        return $pdf->stream($id.".Pdf"); 
     }
 }

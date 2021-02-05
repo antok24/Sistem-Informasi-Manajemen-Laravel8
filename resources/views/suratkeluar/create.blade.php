@@ -14,7 +14,8 @@
 <div class="row">
   <div class="col-12 col-xl-8">
     <div class="card card-body bg-white border-light shadow-sm mb-4">
-      <h2 class="h5 mb-3">Form Input Surat Keluar</h2>
+      <h2 class="h5 mb-1">Form Input Surat Keluar</h2>
+      <h5 class="h6 mb-3 text-danger">Nomor Surat Tertinggi diinput : <a class="btn btn-sm icon-shape-blue text-info rounded mr-2 mr-sm-0">{{ $nomorsrt }}</a></h5>
       <form action="{{ url('/surat-keluar/simpan') }}" method="POST" enctype="multipart/form-data">
         @csrf
         <div class="row">
@@ -179,18 +180,18 @@
       </form>
     </div>
   </div>
-  {{-- <div class="col-12 col-xl-4">
+  <div class="col-12 col-xl-4">
     <div class="card border-light shadow-sm">
       <div class="card-body">
-        <h5 class="h6">Data Surat Masuk Baru Saja Dibuat </h5>
-        @foreach ($data as $a)
+        <h5 class="h6">Data Surat Keluar Baru Saja Diinput </h5>
+        @foreach ($sk as $a)
         <div class="d-block">
           <div class="d-flex align-items-center border-bottom border-light mb-1 pt-2 mr-0">
-            <div class="icon icon-shape icon-sm icon-shape-danger rounded mr-2"><span class="fas fa-print"></span>
+            <div class="icon icon-shape icon-sm icon-shape-danger rounded mr-2"><span class="fas fa-envelope"></span>
             </div>
             <div class="d-block mb-1">
-              <h5 class="font-weight-normal small mb-0">{{ $a->nomor_surat }}</h5>
-              <h5 class="font-weight-normal small mb-0">Dari : {{ $a->asal_surat }}</h5>
+              <h5 class="font-weight-normal small mb-0">{{ $a->nomor_surat }}/{{ $a->nomor_ref_surat }}/{{ $a->tahun_surat }}</h5>
+              <h5 class="font-weight-normal small mb-0">Tujuan : {{ $a->tujuan_surat }}</h5>
               <h5 class="font-weight-normal small mb-0">Perihal : {{ $a->perihal }}</h5>
             </div>
           </div>
@@ -198,7 +199,7 @@
         @endforeach
       </div>
     </div>
-  </div> --}}
+  </div>
 </div>
 
 @endsection

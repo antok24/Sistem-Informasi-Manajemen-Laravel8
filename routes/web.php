@@ -20,6 +20,7 @@ Route::middleware('auth')->group(function(){
     Route::get('/surat-masuk/create', [SuratMasukController::class, 'formadd'])->name('suratmasuk.create');
     Route::post('/surat-masuk/simpan', [SuratMasukController::class, 'store'])->name('suratmasuk.store');
     Route::get('/surat-masuk', [SuratMasukController::class, 'index'])->name('suratmasuk');
+    Route::get('/surat-masuk/cetak-disposisi/{id}', [SuratMasukController::class, 'cetakdisposisi'])->name('cetakdisposisi');
 
     Route::get('/surat-keluar',[SuratKeluarController::class, 'index'])->name('suratkeluar');
     Route::get('/surat-keluar/create',[SuratKeluarController::class, 'form'])->name('suratkeluar.create');

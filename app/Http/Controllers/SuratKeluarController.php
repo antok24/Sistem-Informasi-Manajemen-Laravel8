@@ -29,11 +29,15 @@ class SuratKeluarController extends Controller
 
     public function form()
     {
+        $sk = SuratKeluar::latest()->limit(5)->get();
+        $tahun = date('Y');
         $klasifikasi = KlasifikasiSurat::All();
-        // $nomor = NomorSurat::whereRaw('nomor_surat = (select max(nomor_surat) from m_nomor_surat)')->get();
-        // dd($nomor);
+        $nomorsrt = NomorSurat::where('tahun', $tahun)->get();
+
         return view('suratkeluar.create',[
-            'klasifikasi' => $klasifikasi
+            'sk' => $sk,
+            'klasifikasi' => $klasifikasi,
+            'nomorsrt' => collect($nomorsrt)->max('nomor_surat'),
         ]);
     }
 
@@ -47,7 +51,7 @@ class SuratKeluarController extends Controller
             'perihal' => 'required',
             'lampiran' => 'required',
             'tanggal_surat' => 'required',
-            'file_surat_keluar' => 'required|max:2000',
+            'file_surat_keluar' => 'required',
         ]);
 
         if($validator->fails()){

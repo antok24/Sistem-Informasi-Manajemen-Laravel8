@@ -24,6 +24,7 @@ class CreateSuratMasuksTable extends Migration
             $table->date('tanggal_surat');
             $table->char('status',4);
             $table->string('file_surat_masuk');
+            $table->string('nip_ttd');
             $table->string('user_create');
             $table->string('user_update')->nullable();
             $table->timestamps();
