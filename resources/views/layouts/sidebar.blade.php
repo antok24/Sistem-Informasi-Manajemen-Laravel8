@@ -48,7 +48,7 @@
                     <a class="dropdown-item font-weight-bold text-info" href="{{ route('suratmasuk.create') }}"><span class="fas fa-envelope-open-text"></span>Surat Masuk</a>
                     <a class="dropdown-item font-weight-bold text-info" href="{{ route('suratkeluar.create') }}"><span class="fas fa-envelope-open-text"></span>Surat Keluar</a>
                     <a class="dropdown-item font-weight-bold text-info" href=""><span class="fas fa-user-shield text-info"></span>Surat Konfirmasi Ijazah</a>
-                    <a class="dropdown-item font-weight-bold text-info" href=""><span class="fas fa-user-shield text-info"></span>Surat Keterangan Aktif</a>
+                    <a class="dropdown-item font-weight-bold text-info" href="{{ route('surket-mahasiswa-aktif') }}"><span class="fas fa-user-shield text-info"></span>Surat Keterangan Aktif</a>
                     <a class="dropdown-item font-weight-bold text-info" href=""><span class="fas fa-cloud-upload-alt text-info"></span>Upload Files</a>
                     
                 </div>

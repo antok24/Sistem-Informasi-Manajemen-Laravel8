@@ -18,7 +18,6 @@ class SearchSuratkeluar extends Component
         if (strlen($this->search) > 2) {
             $hasilcaris = SuratKeluar::where('tujuan_kepada','like', '%'.$this->search.'%')->get();
         }
-
         return view('livewire.search-suratkeluar', [
             'hasilcaris' => collect($hasilcaris)->take(10)
         ]);

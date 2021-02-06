@@ -27,7 +27,7 @@ class SuratKeluarController extends Controller
         return view('suratkeluar.index');
     }
 
-    public function form()
+    public function form(Request $request)
     {
         $sk = SuratKeluar::latest()->limit(5)->get();
         $tahun = date('Y');

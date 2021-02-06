@@ -5,7 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
-
+use App\Http\Controllers\SurketMahasiswaAktifController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -25,4 +25,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/surat-keluar',[SuratKeluarController::class, 'index'])->name('suratkeluar');
     Route::get('/surat-keluar/create',[SuratKeluarController::class, 'form'])->name('suratkeluar.create');
     Route::post('/surat-keluar/simpan',[SuratKeluarController::class, 'simpan'])->name('suratkeluar.simpan');
+
+    // Route Livewire
+    Route::get('/surket-mahasiswa-aktif', [SurketMahasiswaAktifController::class, 'index'])->name('surket-mahasiswa-aktif');
+
 });

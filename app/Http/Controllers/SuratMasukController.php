@@ -93,7 +93,8 @@ class SuratMasukController extends Controller
         
         $pejabat = DB::table('t_pejabat')->leftJoin('m_jabatan', 't_pejabat.kode_jabatan', '=' , 'm_jabatan.kode_jabatan')->where('t_pejabat.kode_jabatan',1)->where('t_pejabat.kode_upbjj', Auth::user()->kode_upbjj)->first();
 
-        $result = SuratMasuk::where('id',$id)->get();
+        $idd = base64_decode($id);
+        $result = SuratMasuk::where('id',$idd)->get();
 
         $view  = \View::make('suratmasuk.cetakdisposisi',[
             'hariini' => $hariini,
@@ -104,6 +105,6 @@ class SuratMasukController extends Controller
         $pdf   = \App::make('dompdf.wrapper');
         $pdf->loadHTML($view)->setPaper('letter', 'potrait');
                 
-        return $pdf->stream($id.".Pdf"); 
+        return $pdf->stream($idd.".Pdf"); 
     }
 }

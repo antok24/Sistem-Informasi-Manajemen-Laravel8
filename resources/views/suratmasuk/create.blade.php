@@ -155,7 +155,7 @@
         @foreach ($data as $a)
         <div class="d-block">
           <div class="d-flex align-items-center border-bottom border-light mb-1 pt-2 mr-0">
-            <a href="{{ url('/surat-masuk/cetak-disposisi', $a->id ) }}" class="icon icon-shape icon-sm icon-shape-danger rounded mr-2"><span class="fas fa-print"></span>
+            <a href="{{ url('/surat-masuk/cetak-disposisi',base64_encode($a->id) ) }}" class="icon icon-shape icon-sm icon-shape-danger rounded mr-2"><span class="fas fa-print"></span>
             </a>
             <div class="d-block mb-1">
               <h5 class="font-weight-normal small mb-0">{{ $a->nomor_surat }}</h5>

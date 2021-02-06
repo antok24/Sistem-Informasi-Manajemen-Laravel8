@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreatePejabatsTable extends Migration
+class CreateMasasTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,14 +13,11 @@ class CreatePejabatsTable extends Migration
      */
     public function up()
     {
-        Schema::create('t_pejabat', function (Blueprint $table) {
+        Schema::create('t_masa', function (Blueprint $table) {
             $table->id();
-            $table->char('nik');
-            $table->string('nama');
-            $table->char('kode_jabatan');
-            $table->char('kode_upbjj');
-            $table->string('file_ttd');
-            $table->char('status');
+            $table->char('masa', 5);
+            $table->char('tahun', 4);
+            $table->char('status', 1);
             $table->timestamps();
         });
     }
@@ -32,6 +29,6 @@ class CreatePejabatsTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('t_pejabat');
+        Schema::dropIfExists('t_masa');
     }
 }
