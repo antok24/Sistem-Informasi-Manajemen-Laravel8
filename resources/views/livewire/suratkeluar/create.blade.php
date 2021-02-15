@@ -1,55 +1,9 @@
 <div class="row">
   <div class="col-12 col-xl-8">
     <div class="card card-body bg-white border-light shadow-sm mb-4">
-      {{-- <div class="row">
-        <div class="col-md-6 mb-2">
-          <label for="searchklasifikasi">Tentukan Klasifikasi</label>
-          <input wire:model="searchklasifikasi" class="form-control @error('searchklasifikasi') is-invalid @enderror"
-            id="searchklasifikasi" name="searchklasifikasi" value="{{ $selectklasfifikasi }}" type="text"
-            placeholder="Search..." autocomplete="off" />
-          @error('searchklasifikasi')
-          <div class="invalid-feedback">
-            {{ $message }}
-          </div>
-          @enderror
-        </div>
-        <div wire:loading class="spinner-border text-info" role="status">
-          <span class="visually-hidden"></span>
-        </div>
-      </div> 
-       @if (strlen($searchklasifikasi) >= 2)
-      <div class="position-relative">
-        <div class="position-absolute col-12 mt-1 mb-1">
-          <div class="card border-light bg-light shadow-sm">
-            @if ($hasilcaris->count() > 0)
-            <div class="card-body">
-              @foreach ($hasilcaris as $data)
-              <div  class="d-flex align-items-center justify-content-between border-bottom border-white pb-1 mb-2">
-                <a wire:click="select({{ $data->id , $data->kode_klasifikasi}})">
-                  <h6 class="mb-0"><span class="icon icon-xs mr-3"><span class="fas fa-globe-europe"></span></span>{{
-                    $data['jenis_arsip'] }}</h6>
-                  <div class="small card-stats">{{ $data['kode_klasifikasi'] }}</div>
-                </a>
-              </div>
-              @endforeach
-            </div>
-    
-            @else
-            <div class="card card-body bg-light border-light shadow-sm mb-1">
-              <p><i class="fas fa-sad-tear text-info"></i> Data dari query {{ $searchklasifikasi }} tidak
-                ditemukan !</p>
-            </div>
-    
-            @endif
-          </div>
-        </div>
-      </div>
-      @endif
-      <li role="separator" class="dropdown-divider mt-4 mb-3 border-info"></li> --}}
       <h2 class="h5 mb-3">Form Input Surat Keluar</h2>
       <form action="{{ url('/surat-masuk/simpan') }}" method="POST" enctype="multipart/form-data">
-        @csrf
-        
+        @csrf        
         <div class="row">
           <div class="col-md-4 mb-2">
             <label for="nomor_surat">Nomor Surat</label>

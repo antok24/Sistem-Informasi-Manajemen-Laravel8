@@ -26,6 +26,7 @@
 
     <!-- Volt CSS -->
     <link type="text/css" href="{{ asset('css/volt.css') }}" rel="stylesheet">
+    
     @livewireStyles    
 </head>
 <body>
@@ -76,6 +77,5 @@
     <script src="{{ asset('assets/js/volt.js') }}"></script>
 
     @livewireScripts
-    
 </body>
 </html>

@@ -6,6 +6,7 @@ use App\Http\Controllers\HomeController;
 use App\Http\Controllers\SuratMasukController;
 use App\Http\Controllers\SuratKeluarController;
 use App\Http\Controllers\SurketMahasiswaAktifController;
+use App\Http\Controllers\LemburController;
 
 Route::get('/', function () {
     return view('welcome');
@@ -26,7 +27,8 @@ Route::middleware('auth')->group(function(){
     Route::get('/surat-keluar/create',[SuratKeluarController::class, 'form'])->name('suratkeluar.create');
     Route::post('/surat-keluar/simpan',[SuratKeluarController::class, 'simpan'])->name('suratkeluar.simpan');
 
-    // Route Livewire
     Route::get('/surket-mahasiswa-aktif', [SurketMahasiswaAktifController::class, 'index'])->name('surket-mahasiswa-aktif');
+
+    Route::get('/lembur', [LemburController::class, 'index'])->name('lembur');
 
 });

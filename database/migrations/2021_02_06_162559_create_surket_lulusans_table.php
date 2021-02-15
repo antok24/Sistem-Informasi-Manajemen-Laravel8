@@ -35,7 +35,7 @@ class CreateSurketLulusansTable extends Migration
             $table->char('mr_akhir', 5);
             $table->char('nip_ttd', 20);
             $table->string('user_create');
-            $table->string('user_update');
+            $table->string('user_update')->nullable();
             $table->timestamps();
         });
     }

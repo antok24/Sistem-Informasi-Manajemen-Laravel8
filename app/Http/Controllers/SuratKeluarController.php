@@ -87,8 +87,10 @@ class SuratKeluarController extends Controller
             $addnomor->nomor_surat = $request->nomor_surat;
             $addnomor->tahun = $tahun_surat;
             $addnomor->status = 1;
+            $addnomor->kode = 1;
             $addnomor->user_create = Auth::user()->name;
             $addnomor->save();
+            
             return redirect()->route('suratkeluar.create')->with('success','Data Berhasil Disimpan');
         }else{
             return back()->with('toast_error','Nomor Surat Sudah pernah dibuat')->withInput();

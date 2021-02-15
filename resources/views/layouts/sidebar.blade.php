@@ -70,6 +70,12 @@
                 </div>
             </li>
             <li class="nav-item ">
+                <a href="{{ route('lembur') }}" class="nav-link">
+                    <span class="sidebar-icon"><span class="fas fa-cog"></span></span>
+                    <span>Data Lembur</span>
+                </a>
+            </li>
+            <li class="nav-item ">
                 <a href="" class="nav-link">
                     <span class="sidebar-icon"><span class="fas fa-cog"></span></span>
                     <span>Settings</span>
