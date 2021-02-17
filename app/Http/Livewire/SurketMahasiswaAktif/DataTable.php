@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\SurketMahasiswaAktif;
 
+use App\Models\NomorSurat;
 use Livewire\Component;
 use App\Models\SurketMahasiswaAktif;
 use App\Models\Pejabat;
@@ -77,7 +78,12 @@ class DataTable extends Component
     public function delete($id)
     {
         if($id){
-            $mhs = SurketMahasiswaAktif::find($id)->first();            
+            $mhs = SurketMahasiswaAktif::find($id)->first();
+
+            $nomor = NomorSurat::where('nomor_surat', $mhs->nomor_surat)->where('tahun', $mhs->tahun)->first();
+
+            $nomor->delete(); 
+
             $mhs->delete();
 
             session()->flash('message', 'Data Surat Keterangan Aktif Berhasil Dihapus!');
