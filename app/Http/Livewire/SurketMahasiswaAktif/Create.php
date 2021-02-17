@@ -78,8 +78,10 @@ class Create extends Component
         $user = Auth::user();
         $kodesurat = 'UN31.UPBJJ.15/KM.00.00';
         $tahun = date('Y');
-        $ceknomor = NomorSurat::max('nomor_surat');
-        $nomor = $ceknomor+1;
+        
+        $ceknomor =  NomorSurat::where('tahun', $tahun)->get();
+        $nomormax = collect($ceknomor)->max('nomor_surat');
+        $nomorsrt = $nomormax+1;
 
         if(empty($cekmasa)){
                        
@@ -95,14 +97,14 @@ class Create extends Component
                 'mr_awal' => $this->formaddMahasiswa['mr_awal'],
                 'mr_akhir' => $this->formaddMahasiswa['mr_akhir'],
                 'masa' => $masa->masa,
-                'nomor_surat' => $nomor,
+                'nomor_surat' => $nomorsrt,
                 'kode_surat' => $kodesurat,
                 'tahun' => $tahun,
                 'user_create' => $user->name,
             ]);
 
             $addnomor = NomorSurat::create([
-                'nomor_surat' => $nomor,
+                'nomor_surat' => $nomorsrt,
                 'tahun' => $tahun,
                 'status' => 1,
                 'kode' => 2,

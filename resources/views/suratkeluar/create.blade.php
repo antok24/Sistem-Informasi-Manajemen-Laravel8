@@ -191,7 +191,7 @@
             </div>
             <div class="d-block mb-1">
               <h5 class="font-weight-normal small mb-0">{{ $a->nomor_surat }}/{{ $a->nomor_ref_surat }}/{{ $a->tahun_surat }}</h5>
-              <h5 class="font-weight-normal small mb-0">Tujuan : {{ $a->tujuan_surat }}</h5>
+              <h5 class="font-weight-normal small mb-0">Tujuan : {{ $a->tujuan_kepada }}</h5>
               <h5 class="font-weight-normal small mb-0">Perihal : {{ $a->perihal }}</h5>
             </div>
           </div>
